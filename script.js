@@ -1,15 +1,15 @@
 const allText = document.querySelector('.all-text');
 const mainText = document.querySelector('.main-text');
 const button = document.querySelector('button');
-const header = document.querySelector('h2')
+const header = document.querySelector('.header')
 
 button.addEventListener('click', highlightWord);
 
 function highlightWord() {
 	let inputText = allText.value;
 	let textToHighlight = mainText.value;
-	if(inputText.length > 100 || inputText == '' || textToHighlight == '' ) {
-		console.log("Input should be less than 100 and not empty")
+	if(inputText == '' || textToHighlight == '' ) {
+		alert("Input should be less than 100 and not empty");
 	} 
 	else {
 		let textArray = inputText.split(' ');
