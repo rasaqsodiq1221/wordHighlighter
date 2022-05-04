@@ -1,7 +1,8 @@
 const allText = document.querySelector('.all-text');
 const mainText = document.querySelector('.main-text');
 const button = document.querySelector('button');
-const header = document.querySelector('.header')
+const header = document.querySelector('.header');
+const wordLimit = document.querySelectorAll('input[data-max-words]');
 
 button.addEventListener('click', highlightWord);
 
@@ -31,3 +32,15 @@ function highlightWord() {
 		}
 	}
 }
+
+wordLimit.forEach(input => {
+	let maxWords = parseInt(input.getAttribute('data-max-words') || 0)
+	input.addEventListener('keydown', e => {
+		let target = e.currentTarget
+		let words = target.value.split(/\s+/).length
+		if (!target.getAttribute('data-announce'))
+			words >= maxWords && e.keyCode == 32 && e.preventDefault()
+		else
+			words >= maxWords && e.keyCode == 32 && (e.preventDefault() || alert(`Only ${maxWords} words allowed`))
+	})
+})
